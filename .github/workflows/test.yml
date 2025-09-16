@@ -20,12 +20,11 @@ jobs:
 
       # Step 2: Install Cloudsmith CLI with OIDC authentication
       - name: Install Cloudsmith CLI
-        uses: cloudsmith-io/cloudsmith-cli-action@v1.0.3
+        uses: cloudsmith-io/cloudsmith-cli-action@master
         with:
-          oidc-namespace: 'simran-parwani-testorg'          # Replace with your Cloudsmith org
-          oidc-service-account-slug: 'access'  # Replace with your service account slug
-          oidc-auth-only: false
-          pip-install: false
+          oidc-namespace: 'simran-parwani-testorg'
+          oidc-service-slug: 'access'
+
 
       # Step 3: Build your Python package (optional, if not already built)
       - name: Build Python package
