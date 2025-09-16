@@ -22,8 +22,7 @@ jobs:
       - name: Install Cloudsmith CLI
         uses: cloudsmith-io/cloudsmith-cli-action@master
         with:
-          oidc-namespace: 'simran-parwani-testorg'
-          oidc-service-slug: 'access'
+          api-key: ${{ secrets.CLOUDSMITH_API_KEY }}'
 
 
       # Step 3: Build your Python package (optional, if not already built)
