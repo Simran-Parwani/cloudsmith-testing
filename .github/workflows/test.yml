@@ -20,7 +20,7 @@ jobs:
 
       # Step 2: Install Cloudsmith CLI with OIDC authentication
       - name: Install Cloudsmith CLI
-        uses: cloudsmith-io/cloudsmith-cli-action@master
+        uses: cloudsmith-io/cloudsmith-cli-action@v1.0.3
         with:
           api-key: ${{ secrets.CLOUDSMITH_API_KEY }}'
 
