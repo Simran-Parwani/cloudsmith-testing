@@ -38,10 +38,10 @@ jobs:
 
           
           # Package the chart
-          helm package alpacka --version 0.0.1 
+          helm package alpacka --version 0.0.2
 
       # 5️⃣ Push Helm chart to Cloudsmith
       - name: Push to Cloudsmith
         run: |
-          echo "${{ env.CLOUDSMITH_API_KEY }}" | helm registry login helm.oci.cloudsmith.io --username simran-parwani --password fb39b7879994a8f67bcef5016766fa756b1924ea
-          helm push alpacka-0.0.1.tgz oci://helm.oci.cloudsmith.io/simran-parwani-testorg/helm
+          echo "${{ env.CLOUDSMITH_API_KEY }}" | helm registry login helm.oci.cloudsmith.io --username simran-parwani --password-stdin
+          helm push alpacka-0.0.2.tgz oci://helm.oci.cloudsmith.io/simran-parwani-testorg/helm
