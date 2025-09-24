@@ -1,4 +1,4 @@
-name: Push Docker Image to Cloudsmith
+name: Push Helm Chart to Cloudsmith
 
 on:
   workflow_dispatch:
@@ -7,7 +7,6 @@ permissions:
   contents: read
   actions: write
   id-token: write
-
 
 jobs:
   push-to-cloudsmith:
@@ -32,9 +31,8 @@ jobs:
       - name: List repo structure
         run: ls -R
 
-      # 4️⃣ Build Helm chart
+      # 4️⃣ Build Helm chart from current directory
       - name: Build Helm chart
-        working-directory: helm/alpacka   # CD into your chart folder
         run: |
           # Update dependencies
           helm dependency update
@@ -42,9 +40,8 @@ jobs:
           # Package the chart
           helm package . --version 0.0.1 --app-version 0.0.1
 
+      # 5️⃣ Push Helm chart to Cloudsmith
       - name: Push to Cloudsmith
-        shell: bash
-        working-directory: helm/alpacka
         run: |
           echo "${{ secrets.CLOUDSMITH_API_KEY }}" | helm registry login helm.oci.cloudsmith.io --username simran-parwani --password-stdin
           helm push alpacka-0.0.1.tgz oci://helm.oci.cloudsmith.io/simran-parwani-testorg/helm
