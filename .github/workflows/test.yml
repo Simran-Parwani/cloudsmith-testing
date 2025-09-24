@@ -23,11 +23,26 @@ jobs:
           oidc-namespace: "simran-parwani-testorg"
           oidc-service-slug: "access"
 
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.17.3
+
+      # 3️⃣ List repo for debugging (optional)
+      - name: List repo structure
+        run: ls -R
+
+      # 4️⃣ Build Helm chart
       - name: Build Helm chart
-        working-directory: helm/alpacka
         run: |
+          # If your Chart.yaml is at helm/alpacka, cd into it
+          if [ -f "helm/alpacka/Chart.yaml" ]; then
+            cd helm/alpacka
+          fi
+
           helm dependency update
           helm package . --version 0.0.1 --app-version 0.0.1
+
 
       - name: Push to Cloudsmith
         shell: bash
