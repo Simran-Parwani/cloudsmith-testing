@@ -23,7 +23,7 @@ jobs:
           oidc-service-slug: "access"
 
       - name: Set up Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v4.3.0
         with:
           version: v3.17.3
 
@@ -34,8 +34,6 @@ jobs:
       # 4️⃣ Build Helm chart from current directory
       - name: Build Helm chart
         run: |
-          # Update dependencies
-          helm dependency update
           helm create alpacka
 
           
