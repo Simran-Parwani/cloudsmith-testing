@@ -36,9 +36,11 @@ jobs:
         run: |
           # Update dependencies
           helm dependency update
+          helm create alpacka
+
           
           # Package the chart
-          helm package . --version 0.0.1 --app-version 0.0.1
+          helm package alpacka --version 0.0.1 
 
       # 5️⃣ Push Helm chart to Cloudsmith
       - name: Push to Cloudsmith
