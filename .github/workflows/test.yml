@@ -23,8 +23,8 @@ jobs:
           oidc-namespace: "simran-parwani-testorg"
           oidc-service-slug: "access"
 
-      - name: Package Helm chart
-        working-directory: ./helm/alpacka
+      - name: Build Helm chart
+        working-directory: helm/alpacka
         run: |
           helm dependency update
           helm package . --version 0.0.1 --app-version 0.0.1
