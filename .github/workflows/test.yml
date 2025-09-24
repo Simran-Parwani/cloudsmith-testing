@@ -34,15 +34,13 @@ jobs:
 
       # 4️⃣ Build Helm chart
       - name: Build Helm chart
+        working-directory: helm/alpacka   # CD into your chart folder
         run: |
-          # If your Chart.yaml is at helm/alpacka, cd into it
-          if [ -f "helm/alpacka/Chart.yaml" ]; then
-            cd helm/alpacka
-          fi
-
+          # Update dependencies
           helm dependency update
+          
+          # Package the chart
           helm package . --version 0.0.1 --app-version 0.0.1
-
 
       - name: Push to Cloudsmith
         shell: bash
