@@ -3,6 +3,12 @@ name: Push Docker Image to Cloudsmith
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: write
+  id-token: write
+
+
 jobs:
   push-to-cloudsmith:
     runs-on: ubuntu-latest
